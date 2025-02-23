@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* Paleta de colores:
-       - Verde oscuro: #436C3B (títulos, borde del formulario)
+       - Verde oscuro: #436C3B (títulos, bordes)
        - Verde medio: #7EA54A (fondos y detalles)
        - Verde claro: #B9D986 (fondo de la página)
        - Amarillo verdoso: #DBDB81 (elementos destacados, botones)
@@ -63,10 +63,8 @@
       background-color: #7EA54A;
       border-radius: 20px;
       box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
       margin: 0 auto;
+      overflow: hidden;
     }
     
     footer {
@@ -233,70 +231,46 @@
     });
   </script>
   
-  <!-- Nuevo Script de Streaming Embebido -->
+  <!-- Nuevo Script de Streaming Embebido (integrado en el contenedor central) -->
   <script>
     !function(window){
       const host = "https://labs.heygen.com",
         url = host + "/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiIyNDdjNTFjMGM5MDc0NDI3YjNmMWZlNTBm%0D%0AZTJlYTg5YSIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzI0N2M1MWMwYzkwNzQ0MjdiM2YxZmU1MGZlMmVhODlhL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6ImQ3%0D%0AYzVhNmU1YjM2ZDRhZjQ5ZmU5MWYwNDI4Y2YwNmI0IiwidXNlcm5hbWUiOiI5Mzc0NGZkZTc1NGY0%0D%0AY2ZjOTQzNjA2NTU4Y2M3NjZlZSJ9&inIFrame=1",
-        clientWidth = document.body.clientWidth,
         wrapDiv = document.createElement("div");
       wrapDiv.id = "heygen-streaming-embed";
+      // Eliminamos cualquier estilo de posición fija para que se integre al contenedor
       const container = document.createElement("div");
       container.id = "heygen-streaming-container";
       const stylesheet = document.createElement("style");
       stylesheet.innerHTML = `
-  #heygen-streaming-embed {
-    z-index: 9999;
-    position: fixed;
-    left: 40px;
-    bottom: 40px;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
-    transition: all linear 0.1s;
-    overflow: hidden;
-  
-    opacity: 0;
-    visibility: hidden;
-  }
-  #heygen-streaming-embed.show {
-    opacity: 1;
-    visibility: visible;
-  }
-  #heygen-streaming-embed.expand {
-    ${clientWidth < 540 ? "height: 266px; width: 96%; left: 50%; transform: translateX(-50%);" : "height: 366px; width: calc(366px * 16 / 9);"}
-    border: 0;
-    border-radius: 8px;
-  }
-  #heygen-streaming-container {
-    width: 100%;
-    height: 100%;
-  }
-  #heygen-streaming-container iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
+        #heygen-streaming-embed {
+          width: 100%;
+          height: 100%;
+          border: 0;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        #heygen-streaming-container {
+          width: 100%;
+          height: 100%;
+        }
+        #heygen-streaming-container iframe {
+          width: 100%;
+          height: 100%;
+          border: 0;
+        }
       `;
       const iframe = document.createElement("iframe");
-      iframe.allowFullscreen = !1;
+      iframe.allowFullscreen = false;
       iframe.title = "Streaming Embed";
       iframe.role = "dialog";
       iframe.allow = "microphone";
       iframe.src = url;
-      let visible = !1, initial = !1;
-      window.addEventListener("message", (e => {
-        e.origin === host && e.data && e.data.type && "streaming-embed" === e.data.type && (
-          "init" === e.data.action ? (initial = !0, wrapDiv.classList.toggle("show", initial)) :
-          "show" === e.data.action ? (visible = !0, wrapDiv.classList.toggle("expand", visible)) :
-          "hide" === e.data.action && (visible = !1, wrapDiv.classList.toggle("expand", visible))
-        );
-      }));
       container.appendChild(iframe);
       wrapDiv.appendChild(stylesheet);
       wrapDiv.appendChild(container);
+      // Se inserta el embed directamente en el contenedor central (avatar)
       document.getElementById("avatar1").appendChild(wrapDiv);
     }(globalThis);
   </script>
