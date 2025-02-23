@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Asesor en Estrategia de Sustentabilidad Empresarial</title>
-  <link rel="icon" href="HINS logo color.png" type="image/png">
+  <link rel="icon" href="HINS logo blanco.png" type="image/png">
   <!-- Importar la fuente Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -22,6 +22,7 @@
       margin: 0;
       padding: 0;
       background-color: #B9D986;
+      text-align: center;
     }
     
     header {
@@ -45,85 +46,27 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 160px);
     }
     
     h1 {
       font-size: 2em;
-      text-align: center;
-      margin: 20px 0;
+      margin-bottom: 20px;
       color: #436C3B;
     }
     
-    h2 {
-      font-size: 1.5em;
-      text-align: center;
-      color: #436C3B;
-    }
-    
-    /* Sección para el registro de actividades */
-    #time-tracking {
-      background-color: #DBDB81;
-      padding: 20px;
-      margin: 20px auto;
-      width: 80%;
-      border-radius: 8px;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-      border: 2px solid #436C3B;
-    }
-    
-    #time-tracking h2 {
-      color: #436C3B;
-    }
-    
-    #time-tracking form label {
-      display: inline-block;
-      width: 150px;
-      margin-top: 10px;
-      color: #436C3B;
-    }
-    
-    #time-tracking form input {
-      margin-top: 10px;
-      border: 1px solid #436C3B;
-      padding: 5px;
-      border-radius: 4px;
-    }
-    
-    #time-tracking table {
-      width: 100%;
-      margin-top: 15px;
-      border-collapse: collapse;
-    }
-    
-    #time-tracking table, 
-    #time-tracking th, 
-    #time-tracking td {
-      border: 1px solid #959595;
-      padding: 8px;
-      text-align: center;
-    }
-    
-    #time-tracking th {
+    /* Contenedor para el Avatar (streaming embebido) */
+    .avatar-container {
+      width: 600px;
+      height: 600px;
       background-color: #7EA54A;
-      color: #323232;
-    }
-    
-    /* Botones generales */
-    button {
-      background-color: #DBDB81;
-      color: #323232;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-      margin-top: 10px;
-    }
-    
-    button:hover {
-      background-color: #7EA54A;
+      border-radius: 20px;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
     }
     
     footer {
@@ -216,14 +159,9 @@
     
     /* Responsive */
     @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-      
       header {
         flex-direction: column;
         height: auto;
-        background: #7EA54A;
       }
       
       header img {
@@ -234,17 +172,15 @@
         font-size: 1.5em;
       }
       
-      h2 {
-        font-size: 1.3em;
-      }
-      
-      #time-tracking {
+      .avatar-container {
         width: 95%;
+        height: auto;
+        padding: 20px;
+        border-radius: 10px;
       }
       
       footer {
         font-size: 0.7em;
-        padding: 5px;
       }
       
       .popup-content {
@@ -255,63 +191,18 @@
 </head>
 <body>
   <header>
-    <img src="HINS logo color.png" alt="HINS Logo">
+    <img src="HINS logo blanco.png" alt="HINS Logo">
   </header>
   <main>
     <h1>Asesor en Estrategia de Sustentabilidad Empresarial</h1>
-    
-    <!-- Sección para el registro de actividades -->
-    <section id="time-tracking">
-      <h2>Registro de Actividades Diarias</h2>
-      <form id="activityForm">
-        <label for="project">Proyecto:</label>
-        <input type="text" id="project" name="project" required><br>
-        
-        <label for="hours">Horas dedicadas:</label>
-        <input type="number" id="hours" name="hours" step="0.1" required><br>
-        
-        <label for="taskType">Tipo de Tarea:</label>
-        <input type="text" id="taskType" name="taskType" required><br>
-        
-        <button type="button" onclick="addRecord()">Agregar Registro</button>
-      </form>
-      
-      <h3>Registros de Hoy</h3>
-      <table id="recordsTable">
-        <thead>
-          <tr>
-            <th>Proyecto</th>
-            <th>Horas</th>
-            <th>Tipo de Tarea</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Se agregarán los registros aquí -->
-        </tbody>
-      </table>
-      
-      <button type="button" onclick="generateMonthlyReport()">Generar Informe Mensual</button>
-      
-      <h3>Informe Mensual</h3>
-      <table id="monthlyReportTable">
-        <thead>
-          <tr>
-            <th>Proyecto</th>
-            <th>Tipo de Tarea</th>
-            <th>Total Horas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Se mostrará el informe aquí -->
-        </tbody>
-      </table>
-      
-      <button type="button" onclick="exportTableToCSV('informe_mensual.csv')">Exportar a Excel</button>
-    </section>
+    <!-- Contenedor para el Avatar -->
+    <div class="avatar-container active" id="avatar1">
+      <!-- El streaming embebido se insertará aquí -->
+    </div>
   </main>
   
   <footer>
-    que es un desarrollo en prueba del laboratorio de innovación de HINS y puede cometer errores
+    Este un desarrollo en prueba del laboratorio de innovación de HINS, puede cometer errores
   </footer>
   
   <!-- Pop-Up -->
@@ -342,84 +233,6 @@
     });
   </script>
   
-  <!-- Lógica para el registro y generación de informes -->
-  <script>
-    let records = []; // Almacena los registros diarios
-  
-    function addRecord() {
-      const project = document.getElementById('project').value.trim();
-      const hours = parseFloat(document.getElementById('hours').value);
-      const taskType = document.getElementById('taskType').value.trim();
-      
-      if (!project || isNaN(hours) || !taskType) {
-        alert("Por favor, complete todos los campos.");
-        return;
-      }
-      
-      const record = { project, hours, taskType };
-      records.push(record);
-      updateRecordsTable();
-      document.getElementById('activityForm').reset();
-    }
-    
-    function updateRecordsTable() {
-      const tbody = document.querySelector('#recordsTable tbody');
-      tbody.innerHTML = "";
-      records.forEach(record => {
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${record.project}</td><td>${record.hours}</td><td>${record.taskType}</td>`;
-        tbody.appendChild(row);
-      });
-    }
-    
-    function generateMonthlyReport() {
-      let reportData = {};
-      records.forEach(record => {
-        if (!reportData[record.project]) {
-          reportData[record.project] = {};
-        }
-        if (!reportData[record.project][record.taskType]) {
-          reportData[record.project][record.taskType] = 0;
-        }
-        reportData[record.project][record.taskType] += record.hours;
-      });
-      const tbody = document.querySelector('#monthlyReportTable tbody');
-      tbody.innerHTML = "";
-      for (const project in reportData) {
-        for (const taskType in reportData[project]) {
-          const row = document.createElement('tr');
-          row.innerHTML = `<td>${project}</td><td>${taskType}</td><td>${reportData[project][taskType]}</td>`;
-          tbody.appendChild(row);
-        }
-      }
-    }
-    
-    function exportTableToCSV(filename) {
-      let csv = [];
-      const rows = document.querySelectorAll("#monthlyReportTable tr");
-      
-      rows.forEach(row => {
-        const cols = row.querySelectorAll("td, th");
-        let rowData = [];
-        cols.forEach(col => {
-          rowData.push('"' + col.innerText.replace(/"/g, '""') + '"');
-        });
-        csv.push(rowData.join(","));
-      });
-      
-      const csvString = csv.join("\n");
-      const blob = new Blob([csvString], { type: "text/csv" });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.setAttribute("hidden", "");
-      a.setAttribute("href", url);
-      a.setAttribute("download", filename);
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
-  </script>
-  
   <!-- Nuevo Script de Streaming Embebido -->
   <script>
     !function(window){
@@ -444,7 +257,7 @@
     box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
     transition: all linear 0.1s;
     overflow: hidden;
-
+  
     opacity: 0;
     visibility: hidden;
   }
@@ -484,8 +297,9 @@
       container.appendChild(iframe);
       wrapDiv.appendChild(stylesheet);
       wrapDiv.appendChild(container);
-      document.body.appendChild(wrapDiv);
+      document.getElementById("avatar1").appendChild(wrapDiv);
     }(globalThis);
   </script>
 </body>
 </html>
+
